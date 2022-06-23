@@ -1,0 +1,12 @@
+C:\Users\ptkuz\source\repos\AlgoritmsTasks\Task1_MassFind\bin\Debug\net6.0\Task1_MassFind.deps.json
+C:\Users\ptkuz\source\repos\AlgoritmsTasks\Task1_MassFind\bin\Debug\net6.0\Task1_MassFind.dll
+C:\Users\ptkuz\source\repos\AlgoritmsTasks\Task1_MassFind\bin\Debug\net6.0\Task1_MassFind.pdb
+C:\Users\ptkuz\source\repos\AlgoritmsTasks\Task1_MassFind\obj\Debug\net6.0\Task1_MassFind.csproj.AssemblyReference.cache
+C:\Users\ptkuz\source\repos\AlgoritmsTasks\Task1_MassFind\obj\Debug\net6.0\Task1_MassFind.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ptkuz\source\repos\AlgoritmsTasks\Task1_MassFind\obj\Debug\net6.0\Task1_MassFind.AssemblyInfoInputs.cache
+C:\Users\ptkuz\source\repos\AlgoritmsTasks\Task1_MassFind\obj\Debug\net6.0\Task1_MassFind.AssemblyInfo.cs
+C:\Users\ptkuz\source\repos\AlgoritmsTasks\Task1_MassFind\obj\Debug\net6.0\Task1_MassFind.csproj.CoreCompileInputs.cache
+C:\Users\ptkuz\source\repos\AlgoritmsTasks\Task1_MassFind\obj\Debug\net6.0\Task1_MassFind.dll
+C:\Users\ptkuz\source\repos\AlgoritmsTasks\Task1_MassFind\obj\Debug\net6.0\refint\Task1_MassFind.dll
+C:\Users\ptkuz\source\repos\AlgoritmsTasks\Task1_MassFind\obj\Debug\net6.0\Task1_MassFind.pdb
+C:\Users\ptkuz\source\repos\AlgoritmsTasks\Task1_MassFind\obj\Debug\net6.0\ref\Task1_MassFind.dll
