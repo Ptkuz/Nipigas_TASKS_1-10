@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Collections;
+using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -7,7 +8,6 @@ namespace Tasks
     public class Nipigas
     {
         #region Задание 1: Поиск четных и нечетных элементов в массивах
-
         #region Поиск нечетного числа в четном массиве
 
         // Инкапсулированный метод, находящий нечетное число в четном массиве
@@ -63,18 +63,21 @@ namespace Tasks
         }
         #endregion
 
-
+        // Основной метод поиска
         public static int Find(int[] mass)
         {
             try
             {
+                if (mass.GetType()!=typeof(int[]))
+                    throw new ArgumentException($"Массив {nameof(mass)} должен содержать целые цисла");
+
                 int result = 0;
                 if (CheckChetniy(mass, out result))
                     return result;
                 else if (CheckNeChetniy(mass, out result))
                     return result;
                 else
-                    throw new Exception($"Массив {nameof(mass)} некорректный");
+                    throw new ArgumentException($"Массив {nameof(mass)} некорректный");
             }
             catch
             {
@@ -141,6 +144,10 @@ namespace Tasks
         #region Задание 4: Массив с делителям Divisors
         public static int[] Divisors(int n)
         {
+            if(n<=1 || n.GetType()!=typeof(int))
+                throw new ArgumentException($"Число должно быть целым и больше 1");
+
+
             int x = 0; // Длина массива 
             int[] mass = new int[x]; // Создание массива
             for (int i = 2; i < n; i++) // Перебор от 2 до предпоследнего числа в параметре
@@ -189,22 +196,48 @@ namespace Tasks
         #endregion
 
         #region Задание 6: Убрать дублирование символов UniqueInOrder
-        public static IEnumerable<T> UniqueInOrder<T>(IEnumerable<T> iterable)
+        public static IEnumerable UniqueInOrder(IEnumerable iterable)
         {
-            T prev = default!; // Предыдущий символ
-            bool hasPrev = false; // Есть ли предыдущий символ
-            foreach (T item in iterable) // перебираем IEnumerable
+            char prevC = default!; // Предыдущий символ char
+            int prevI = default!; // Предыдущий элемент int
+            foreach (var item in iterable) // перебираем IEnumerable
             {
-                // Если нет предыдущего элемента, говорим что теперь он есть
-                // Или если предыдущией элемент равен текущему
-                if ((!hasPrev && (hasPrev = true)) || !EqualityComparer<T>.Default.Equals(item, prev))
-                    yield return item; // определяет возвращаемый элемент
+                if (item.GetType() == typeof(char)) // Проверяем тип на Char
+                {
+                    if (Char.ToUpper((char)item).Equals(Char.ToUpper((char)prevC))) // Приводим к верхнему регистру
+                        continue;
+                    yield return Char.ToUpper((char)item); // Возвращаем в верхнем регистре
+                    prevC = (char)item;
+                }
+                else
+                {
 
-                // Теперь предыщий элемент равен текущему
-                prev = item;
+                    if (item.Equals(prevI)) // проверяем тип на int
+                        continue;
+                    yield return (int)item;
+                    prevI = (int)item;
+                }
             }
 
         }
+
+        // Этот метод проще и лучше, но я так и не понял, как решить проблему с разностью регистров у символов Char
+        public static IEnumerable<T> UniqueInOrder1<T>(IEnumerable<T> iterable) 
+        {
+            var current = default(T);
+
+            foreach (var item in iterable)
+            {
+                if (item.Equals(current))
+                    continue;
+
+                current = item;
+
+                yield return item;
+            }
+        }
+
+
 
         #endregion
 
@@ -224,11 +257,16 @@ namespace Tasks
         #region Задание 8: Количество битов числа
         public static int CountBits(int n)
         {
-            string str = Convert.ToString(n, 2);
-            var result = str.Where(x => x.Equals('1'));
-            var count = result.Count();
+            if (n >= 0 && n.GetType()==typeof(int)) // Число должно быть целым и не отрицательным
+            {
+                string str = Convert.ToString(n, 2); // Конвертируем в строку в двоичном виде
+                var result = str.Where(x => x.Equals('1')); // Ищем еденицы
+                var count = result.Count(); // Считаем количество 1
 
-            return count;
+                return count;
+            }
+            else
+                throw new ArgumentException("Число должно быть целым и не отрицательным!");
 
 
         }
@@ -238,21 +276,20 @@ namespace Tasks
         #region Задание 9: Замена буквы цифрой в алфавите
         public static string AlphabetPosition(string text)
         {
-            string alphabet = "abcdefghijklmnopqrstuvwxyz";
-            //String.Format(text.ToLower());
-            StringBuilder sb = new StringBuilder();
+            string alphabet = "abcdefghijklmnopqrstuvwxyz"; // массив букв алфавита
+            StringBuilder sb = new StringBuilder(); // Будем собирать с помощью СтрингБилдера
 
-            for (int i = 0; i < text.Length; i++)
+            for (int i = 0; i < text.Length; i++) // Обходим вводимый текст
             {
-                if (Regex.IsMatch(text[i].ToString(), @"^[a-zA-Z]+$"))
+                if (Regex.IsMatch(text[i].ToString(), @"^[a-zA-Z]+$")) // Проверяем, буквали это
                 {
-                    int index = alphabet.IndexOf(text[i].ToString().ToLower()) + 1;
-                    sb.Append(index.ToString());
-                    sb.Append(" ");
+                    int index = alphabet.IndexOf(text[i].ToString().ToLower()) + 1; // Получаеми индекс и привабляем 1
+                    sb.Append(index.ToString()); // Добавляем в СтрингБилдер
+                    sb.Append(" "); // Пробел после каждого символа
                 }
 
             }
-            return sb.ToString().Trim();
+            return sb.ToString().Trim(); // Обрежем лишний пробел
         }
 
         #endregion
@@ -260,22 +297,26 @@ namespace Tasks
         #region Задание 10: Сумма ряда
         public static string SeriesSum(int n)
         {
-            CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("en-EN");
-            double sum = 1;
-            double drob = 1;
-            if (n == 0)
+            if(n < 0 || n.GetType() != typeof(int))
+                throw new ArgumentException($"Число должно быть целым и больше либо равно 0");
+
+
+            CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("en-EN"); // Настройки культуры для отображения дробей
+            double sum = 1; // Сумма ряда
+            double drob = 1; // дробная часть
+            if (n == 0) 
             {
                 sum = 0.00;
                 return sum.ToString("0.00");
             }
 
-                
+
             if (n == 1)
                 return sum.ToString("0.##");
 
-            for (double i = 1; i<n;i++) 
+            for (double i = 1; i < n; i++)
             {
-                sum += (1 / (drob+=3));
+                sum += (1 / (drob += 3)); 
             }
 
             return sum.ToString("0.##");

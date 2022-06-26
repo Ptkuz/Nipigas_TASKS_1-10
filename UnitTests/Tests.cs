@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 using Tasks;
 
 namespace UnitTests
@@ -27,6 +28,14 @@ namespace UnitTests
             int[] exampleTest3 = { int.MaxValue, 0, 1 };
             Assert.IsTrue(0 == Nipigas.Find(exampleTest3));
         }
+
+        [Test]
+        public static void Nipigas_Find_Test4()
+        {
+            int[] exampleTest4 = { 206847684, 1056521, 8, 17, 1901, 21104421, 7, 1, 35521, 1, 7781 };
+            
+            Assert.Throws<ArgumentException>(()=> Nipigas.Find(exampleTest4));
+        }
         #endregion
 
 
@@ -48,6 +57,8 @@ namespace UnitTests
             new object[] {":-)", ":-(", false},
             new object[] {"!@#$%^&*() :-)", ":-)", true},
             new object[] {"abc\n", "abc", false},
+            new object[] {"345345345", "32", false},
+             new object[] {"345345345", "45", true},
         };
 
         [Test, TestCaseSource("sampleTestCases")]
@@ -100,6 +111,12 @@ namespace UnitTests
         {
             Assert.AreEqual(true, Nipigas.Compare(null, ""));
         }
+
+        [Test]
+        public void Nipigas_Compare_Test8()
+        {
+            Assert.AreEqual(true, Nipigas.Compare(null, "456"));
+        }
         #endregion
 
         #region Тесты для четвертого задания
@@ -110,6 +127,9 @@ namespace UnitTests
             Assert.AreEqual(new int[] { 2, 4, 8 }, Nipigas.Divisors(16));
             Assert.AreEqual(new int[] { 11, 23 }, Nipigas.Divisors(253));
             Assert.AreEqual(new int[] { 2, 3, 4, 6, 8, 12 }, Nipigas.Divisors(24));
+            Assert.AreEqual(null, Nipigas.Divisors(13));
+            Assert.Throws<ArgumentException>(() => Nipigas.Divisors(-5));
+            Assert.Throws<ArgumentException>(() => Nipigas.Divisors(1));
         }
 
 
@@ -168,7 +188,25 @@ namespace UnitTests
             
         }
 
+        [Test]
+        public void Nipigas_UniqueInOrder_Test3()
+        {
+            Assert.AreEqual("ABCAD", Nipigas.UniqueInOrder("ABBCcAD"));
+
+        }
+
+        [Test]
+        public void Nipigas_UniqueInOrder_Test4()
+        {
+            int[] mass = new int[] { 1, 2, 2, 3, 3 };
+            int[] result = new int[] { 1, 2, 3 };
+
+            Assert.AreEqual(result, Nipigas.UniqueInOrder(mass));
+
+        }
+
         #endregion
+
         #region Тесты для седьмого задания
         [Test]
         public void Nipigas_XO_Test1()
@@ -178,6 +216,8 @@ namespace UnitTests
             Assert.AreEqual(false, Nipigas.XO("xxxm"));
             Assert.AreEqual(false, Nipigas.XO("Oo"));
             Assert.AreEqual(false, Nipigas.XO("ooom"));
+            Assert.AreEqual(false, Nipigas.XO("zpzpzpp"));
+            Assert.AreEqual(true, Nipigas.XO("zzoo"));
         }
 
         #endregion
@@ -191,9 +231,12 @@ namespace UnitTests
             Assert.AreEqual(3, Nipigas.CountBits(7));
             Assert.AreEqual(2, Nipigas.CountBits(9));
             Assert.AreEqual(2, Nipigas.CountBits(10));
+            Assert.Throws<ArgumentException>(() => Nipigas.CountBits((int)-5.32));
+
         }
 
         #endregion
+
         #region Тесты для девятого задания
         [Test]
         public void Nipigas_AlphabetPosition_SampleTest()
@@ -203,6 +246,7 @@ namespace UnitTests
         }
 
         #endregion
+
         #region Тесты для десятого задания
         [Test]
         public void Nipigas_SeriesSum_Test1()
@@ -213,6 +257,24 @@ namespace UnitTests
         public void Nipigas_SeriesSum_Test2()
         {
             Assert.AreEqual("1.77", Nipigas.SeriesSum(9));
+        }
+
+        [Test]
+        public void Nipigas_SeriesSum_Test3()
+        {
+            Assert.Throws<ArgumentException>(() => Nipigas.SeriesSum(-5));
+        }
+
+        [Test]
+        public void Nipigas_SeriesSum_Test4()
+        {
+            Assert.AreEqual("1.25", Nipigas.SeriesSum(2));
+        }
+
+        [Test]
+        public void Nipigas_SeriesSum_Test5()
+        {
+            Assert.AreEqual("1.57", Nipigas.SeriesSum(5));
         }
 
 
