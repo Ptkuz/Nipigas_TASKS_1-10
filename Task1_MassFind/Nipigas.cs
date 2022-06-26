@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -196,45 +197,41 @@ namespace Tasks
         #endregion
 
         #region Задание 6: Убрать дублирование символов UniqueInOrder
-        public static IEnumerable UniqueInOrder(IEnumerable iterable)
+       
+        public static IEnumerable UniqueInOrder<T>(IEnumerable<T> iterable)
         {
-            char prevC = default!; // Предыдущий символ char
-            int prevI = default!; // Предыдущий элемент int
-            foreach (var item in iterable) // перебираем IEnumerable
+            char prevChar = default!; // Если Char
+            var prevT = default(T); // Если любой другой тип
+            //char c = default!;
+            List<char> chars = new List<char>(); // Список отсортированных Char
+            var items = iterable.ToArray(); // Удаляем дублирующие элементы
+            if (items.GetType() == typeof(char[])) // Если получается массив char
             {
-                if (item.GetType() == typeof(char)) // Проверяем тип на Char
+                foreach (var item in items) // обходим массив
                 {
-                    if (Char.ToUpper((char)item).Equals(Char.ToUpper((char)prevC))) // Приводим к верхнему регистру
+                    char c = Char.ToUpper(Convert.ToChar(item)); // Сконвертируем элемент в char
+                    if (prevChar.Equals(c)) 
                         continue;
-                    yield return Char.ToUpper((char)item); // Возвращаем в верхнем регистре
-                    prevC = (char)item;
+                    chars.Add(c);
+                    prevChar = c;
                 }
-                else
+                char[] resultChars = chars.ToArray();
+                foreach (var item in resultChars)
+                    yield return item;
+            }
+            else 
+            {
+                foreach (var item in iterable)
                 {
-
-                    if (item.Equals(prevI)) // проверяем тип на int
+                    if (item.Equals(prevT))
                         continue;
-                    yield return (int)item;
-                    prevI = (int)item;
+
+                    prevT = item;
+
+                    yield return item;
                 }
             }
 
-        }
-
-        // Этот метод проще и лучше, но я так и не понял, как решить проблему с разностью регистров у символов Char
-        public static IEnumerable<T> UniqueInOrder1<T>(IEnumerable<T> iterable) 
-        {
-            var current = default(T);
-
-            foreach (var item in iterable)
-            {
-                if (item.Equals(current))
-                    continue;
-
-                current = item;
-
-                yield return item;
-            }
         }
 
 

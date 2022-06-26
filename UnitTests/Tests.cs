@@ -1,5 +1,8 @@
 using NUnit.Framework;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Text;
 using Tasks;
 
 namespace UnitTests
@@ -191,7 +194,7 @@ namespace UnitTests
         [Test]
         public void Nipigas_UniqueInOrder_Test3()
         {
-            Assert.AreEqual("ABCAD", Nipigas.UniqueInOrder("ABBCcAD"));
+            Assert.AreEqual("ABCAD", Nipigas.UniqueInOrder("ABBcCAD"));
 
         }
 
@@ -203,6 +206,30 @@ namespace UnitTests
 
             Assert.AreEqual(result, Nipigas.UniqueInOrder(mass));
 
+        }
+
+        [Test]
+        public void Nipigas_UniqueInOrder_Test5()
+        {
+            double[] mass = new double[] { 1.34, 2.54, 2.54, 3.22, 3.22 };
+            double[] result = new double[] { 1.34, 2.54, 3.22 };
+
+            Assert.AreEqual(result, Nipigas.UniqueInOrder(mass));
+        }
+
+        [Test]
+        public void Nipigas_UniqueInOrder_Test6()
+        {
+            List<string> list = new List<string> { "Павел", "Павел", "Андрей", "Андрей", "Игорь", "Андрей" };
+            List<string> result = new List<string>();
+            IEnumerable items = Nipigas.UniqueInOrder(list);
+            foreach (var item in items)
+                result.Add(item.ToString());
+
+            Assert.AreEqual(result[0], "Павел");
+            Assert.AreEqual(result[1], "Андрей");
+            Assert.AreEqual(result[2], "Игорь");
+            Assert.AreEqual(result[3], "Андрей");
         }
 
         #endregion

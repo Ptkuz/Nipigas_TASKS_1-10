@@ -43,7 +43,29 @@ public static class Program
             //Console.WriteLine(rr);
             //Console.WriteLine(num);
             //Console.WriteLine(alpha);
-            Console.WriteLine(Nipigas.CountBits((int)5.32));
+            //Console.WriteLine(Nipigas.CountBits((int)5.32));
+
+
+            //string items = Nipigas.UniqueInOrder2("AABBCC");
+            //foreach (char item in items)
+            // Console.WriteLine(items);
+
+           //IEnumerable result =  Nipigas.UniqueInOrder2("AAAABBBCCDAABBB");
+           // foreach(var item in result)
+           //     Console.Write(item);
+
+
+            string[] mass1 = new string[] { "Павел", "Павел", "Андрей", "Андрей", "Игорь", "Андрей" };
+            //string[] mass2 = new string[] { "Павел", "Андрей", "Игорь", "Андрей" };
+
+            IEnumerable result1 = Nipigas.UniqueInOrder(mass1);
+            foreach (var item in result1)
+            {
+                Console.Write(item + " ");
+               
+            }
+
+
 
 
         }
