@@ -198,18 +198,20 @@ namespace Tasks
 
         #region Задание 6: Убрать дублирование символов UniqueInOrder
        
-        public static IEnumerable UniqueInOrder<T>(IEnumerable<T> iterable)
+        public static IEnumerable UniqueInOrder<T>(IEnumerable<T> iterable, bool noRegister=false)
         {
             char prevChar = default!; // Если Char
+            string prevStr = ""; // Если String
             var prevT = default(T); // Если любой другой тип
             //char c = default!;
             List<char> chars = new List<char>(); // Список отсортированных Char
+            List<string> strings = new List<string>(); // Список отсортированных String
             var items = iterable.ToArray(); // Удаляем дублирующие элементы
             if (items.GetType() == typeof(char[])) // Если получается массив char
             {
                 foreach (var item in items) // обходим массив
                 {
-                    char c = Char.ToUpper(Convert.ToChar(item)); // Сконвертируем элемент в char
+                    char c = Char.ToUpper(Convert.ToChar(item)); // Сконвертируем элемент в char и поднимем регистр
                     if (prevChar.Equals(c)) 
                         continue;
                     chars.Add(c);
@@ -219,7 +221,21 @@ namespace Tasks
                 foreach (var item in resultChars)
                     yield return item;
             }
-            else 
+            else if (items.GetType() == typeof(string[]) && noRegister==true) 
+            {
+                foreach (var item in items) // обходим массив
+                {
+                    string str = item.ToString().ToUpper(); // Сконвертируем элемент в string и поднимем регистр
+                    if (prevStr.Equals(str))
+                        continue;
+                    strings.Add(str);
+                    prevStr = str;
+                }
+                string[] resultStrings = strings.ToArray();
+                foreach (var item in resultStrings)
+                    yield return item;
+            }
+            else
             {
                 foreach (var item in iterable)
                 {

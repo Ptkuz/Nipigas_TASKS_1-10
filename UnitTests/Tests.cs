@@ -237,6 +237,24 @@ namespace UnitTests
             Assert.AreEqual(result[3], "Андрей");
         }
 
+
+        // Но вариацию без учета регистра я тоже сделал.
+        // Просто нужно указать дополнительный необязательный параметр NoRegister = true
+        [Test]
+        public void Nipigas_UniqueInOrder_Test7()
+        {
+            List<string> list = new List<string> { "Павел", "Павел", "Андрей", "Андрей", "Игорь", "Андрей" };
+            List<string> result = new List<string>();
+            IEnumerable items = Nipigas.UniqueInOrder(list, true);
+            foreach (var item in items)
+                result.Add(item.ToString());
+
+            Assert.AreEqual(result[0], "павел".ToUpper());
+            Assert.AreEqual(result[1], "Андрей".ToUpper());
+            Assert.AreEqual(result[2], "Игорь".ToUpper());
+            Assert.AreEqual(result[3], "Андрей".ToUpper());
+        }
+
         #endregion
 
         #region Тесты для седьмого задания

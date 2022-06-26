@@ -55,10 +55,10 @@ public static class Program
            //     Console.Write(item);
 
 
-            string[] mass1 = new string[] { "Павел", "Павел", "Андрей", "Андрей", "Игорь", "Андрей" };
+            string[] mass1 = new string[] { "павел", "Павел", "Андрей", "Андрей", "Игорь", "Андрей" };
             //string[] mass2 = new string[] { "Павел", "Андрей", "Игорь", "Андрей" };
 
-            IEnumerable result1 = Nipigas.UniqueInOrder(mass1);
+            IEnumerable result1 = Nipigas.UniqueInOrder(mass1,true);
             foreach (var item in result1)
             {
                 Console.Write(item + " ");
