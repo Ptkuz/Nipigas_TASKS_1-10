@@ -132,7 +132,7 @@ namespace UnitTests
             Assert.AreEqual(new int[] { 2, 3, 4, 6, 8, 12 }, Nipigas.Divisors(24));
             Assert.AreEqual(null, Nipigas.Divisors(13));
             Assert.Throws<ArgumentException>(() => Nipigas.Divisors(-5));
-            Assert.Throws<ArgumentException>(() => Nipigas.Divisors(1));
+            Assert.Throws<ArgumentException>(() => Nipigas.Divisors(1));           
         }
 
 

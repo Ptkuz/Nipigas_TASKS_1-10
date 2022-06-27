@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Globalization;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -9,74 +8,17 @@ namespace Tasks
     public class Nipigas
     {
         #region Задание 1: Поиск четных и нечетных элементов в массивах
-        #region Поиск нечетного числа в четном массиве
 
-        // Инкапсулированный метод, находящий нечетное число в четном массиве
-        private static bool CheckNeChetniy(int[] mass, out int number)
-        {
-            bool nechet = false; // Найдено ли четеное число
-            int count = 0; // Количество найденных элементов
-            number = 0; // Найденное нечетное число
-
-            foreach (var item in mass)
-            {
-                if (item % 2 == 0) // Если число четное
-                    count++; // Увеличиваем количество элементов
-                else if (item % 2 != 0 && !nechet) // Елси число нечетное и оно еще не было найдено
-                {
-                    nechet = true; // говорим, что мы его нашли
-                    number = item; // и записываем его в выходной параметр
-                }
-                else if (item % 2 != 0 && nechet) // Если число нечетное и э элемент найден
-                    return false; // Вернем false, значит массив задан некорректно
-
-            }
-            if (count == mass.Length - 1) // Если количество элементов равно длине массива минус найденное число
-                return true;
-            return false;
-        }
-
-        #endregion
-        #region Поиск четного числа в нечетном массиве
-
-        // Аналагочино первому методу, только ищем четное число в нечетном массиве
-        private static bool CheckChetniy(int[] mass, out int number)
-        {
-            bool chet = false;
-            int count = 0;
-            number = 0;
-
-            foreach (var item in mass)
-            {
-                if (item % 2 != 0)
-                    count++;
-                else if (item % 2 == 0 && !chet)
-                {
-                    chet = true;
-                    number = item;
-                }
-                else if (item % 2 == 0 && chet)
-                    return false;
-            }
-            if (count == mass.Length - 1)
-                return true;
-            return false;
-        }
-        #endregion
-
-        // Основной метод поиска
         public static int Find(int[] mass)
         {
             try
             {
-                if (mass.GetType()!=typeof(int[]))
-                    throw new ArgumentException($"Массив {nameof(mass)} должен содержать целые цисла");
-
-                int result = 0;
-                if (CheckChetniy(mass, out result))
-                    return result;
-                else if (CheckNeChetniy(mass, out result))
-                    return result;
+                var chetMass = mass.Where(x => x % 2 == 0).ToArray();
+                var nechetMass = mass.Where(x => x % 2 == 1).ToArray();
+                if (chetMass.Length > 1 && nechetMass.Length == 1)
+                    return nechetMass[0];
+                else if (chetMass.Length == 1 && nechetMass.Length > 1)
+                    return chetMass[0];
                 else
                     throw new ArgumentException($"Массив {nameof(mass)} некорректный");
             }
@@ -145,7 +87,7 @@ namespace Tasks
         #region Задание 4: Массив с делителям Divisors
         public static int[] Divisors(int n)
         {
-            if(n<=1 || n.GetType()!=typeof(int))
+            if (n <= 1 || n.GetType() != typeof(int))
                 throw new ArgumentException($"Число должно быть целым и больше 1");
 
 
@@ -197,8 +139,8 @@ namespace Tasks
         #endregion
 
         #region Задание 6: Убрать дублирование символов UniqueInOrder
-       
-        public static IEnumerable UniqueInOrder<T>(IEnumerable<T> iterable, bool noRegister=false)
+
+        public static IEnumerable UniqueInOrder<T>(IEnumerable<T> iterable, bool noRegister = false)
         {
             char prevChar = default!; // Если Char
             string prevStr = ""; // Если String
@@ -212,7 +154,7 @@ namespace Tasks
                 foreach (var item in items) // обходим массив
                 {
                     char c = Char.ToUpper(Convert.ToChar(item)); // Сконвертируем элемент в char и поднимем регистр
-                    if (prevChar.Equals(c)) 
+                    if (prevChar.Equals(c))
                         continue;
                     chars.Add(c);
                     prevChar = c;
@@ -221,7 +163,7 @@ namespace Tasks
                 foreach (var item in resultChars)
                     yield return item;
             }
-            else if (items.GetType() == typeof(string[]) && noRegister==true) 
+            else if (items.GetType() == typeof(string[]) && noRegister == true)
             {
                 foreach (var item in items) // обходим массив
                 {
@@ -274,7 +216,7 @@ namespace Tasks
         #region Задание 8: Количество битов числа
         public static int CountBits(int n)
         {
-            if (n >= 0 && n.GetType()==typeof(int)) // Число должно быть целым и не отрицательным
+            if (n >= 0 && n.GetType() == typeof(int)) // Число должно быть целым и не отрицательным
             {
                 string str = Convert.ToString(n, 2); // Конвертируем в строку в двоичном виде
                 var result = str.Where(x => x.Equals('1')); // Ищем еденицы
@@ -314,14 +256,14 @@ namespace Tasks
         #region Задание 10: Сумма ряда
         public static string SeriesSum(int n)
         {
-            if(n < 0 || n.GetType() != typeof(int))
+            if (n < 0 || n.GetType() != typeof(int))
                 throw new ArgumentException($"Число должно быть целым и больше либо равно 0");
 
 
             CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("en-EN"); // Настройки культуры для отображения дробей
             double sum = 1; // Сумма ряда
             double drob = 1; // дробная часть
-            if (n == 0) 
+            if (n == 0)
             {
                 sum = 0.00;
                 return sum.ToString("0.00");
@@ -333,7 +275,7 @@ namespace Tasks
 
             for (double i = 1; i < n; i++)
             {
-                sum += (1 / (drob += 3)); 
+                sum += (1 / (drob += 3));
             }
 
             return sum.ToString("0.##");
