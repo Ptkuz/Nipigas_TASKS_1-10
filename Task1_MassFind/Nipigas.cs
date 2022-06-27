@@ -257,11 +257,15 @@ namespace Tasks
         #region Задание 7: Одинаковое количество символов А и В
         public static bool XO(string input)
         {
-            var firstChar = input.ToUpper().First(); // Находим первый символ в строке    
-            var result = input.ToUpper().Where(x => x.Equals(firstChar)); // Находим все экземпляры данного символа                  
-            var count = result.Count(); // Считаем количество этих символов
-            if (count == (input.Length - count)) // Если количество равдно длине строки минус количество
-                return true;
+            var unicChar = input.ToUpper().Distinct().ToArray();
+            if (unicChar.Length == 2)
+            {
+                var firstChar = input.ToUpper().First(); // Находим первый символ в строке    
+                var result = input.ToUpper().Where(x => x.Equals(firstChar)); // Находим все экземпляры данного символа                  
+                var count = result.Count(); // Считаем количество этих символов
+                if (count == (input.Length - count)) // Если количество равдно длине строки минус количество
+                    return true;
+            }
             return false;
         }
 
