@@ -50,20 +50,26 @@ public static class Program
             //foreach (char item in items)
             // Console.WriteLine(items);
 
-           //IEnumerable result =  Nipigas.UniqueInOrder2("AAAABBBCCDAABBB");
-           // foreach(var item in result)
-           //     Console.Write(item);
+            //IEnumerable result =  Nipigas.UniqueInOrder2("AAAABBBCCDAABBB");
+            // foreach(var item in result)
+            //     Console.Write(item);
 
 
-            string[] mass1 = new string[] { "павел", "Павел", "Андрей", "Андрей", "Игорь", "Андрей" };
-            //string[] mass2 = new string[] { "Павел", "Андрей", "Игорь", "Андрей" };
+            //string[] mass1 = new string[] { "павел", "Павел", "Андрей", "Андрей", "Игорь", "Андрей" };
+            ////string[] mass2 = new string[] { "Павел", "Андрей", "Игорь", "Андрей" };
 
-            IEnumerable result1 = Nipigas.UniqueInOrder(mass1,true);
-            foreach (var item in result1)
-            {
-                Console.Write(item + " ");
-               
-            }
+            //IEnumerable result1 = Nipigas.UniqueInOrder(mass1);
+            //foreach (var item in result1)
+            //{
+            //    Console.Write(item + " ");
+
+            //}
+            string[] strs = new string[] { "Павел", "Павел", "Андрей", "Андрей", "Игорь", "Андрей" };
+
+            IEnumerable charsResult = Nipigas.UniqueInOrder(strs);
+
+            foreach (var c in charsResult)
+                Console.Write(c + " ");
 
 
 

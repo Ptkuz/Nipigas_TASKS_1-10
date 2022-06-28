@@ -10,3 +10,15 @@ C:\Users\ptkuz\source\repos\AlgoritmsTasks\Task1_MassFind\obj\Debug\net6.0\Tasks
 C:\Users\ptkuz\source\repos\AlgoritmsTasks\Task1_MassFind\obj\Debug\net6.0\refint\Tasks.dll
 C:\Users\ptkuz\source\repos\AlgoritmsTasks\Task1_MassFind\obj\Debug\net6.0\Tasks.pdb
 C:\Users\ptkuz\source\repos\AlgoritmsTasks\Task1_MassFind\obj\Debug\net6.0\ref\Tasks.dll
+C:\Users\evtku\Source\Repos\Nipigas_TASKS_1-10\Task1_MassFind\bin\Debug\net6.0\Tasks.deps.json
+C:\Users\evtku\Source\Repos\Nipigas_TASKS_1-10\Task1_MassFind\bin\Debug\net6.0\Tasks.dll
+C:\Users\evtku\Source\Repos\Nipigas_TASKS_1-10\Task1_MassFind\bin\Debug\net6.0\Tasks.pdb
+C:\Users\evtku\Source\Repos\Nipigas_TASKS_1-10\Task1_MassFind\obj\Debug\net6.0\Tasks.csproj.AssemblyReference.cache
+C:\Users\evtku\Source\Repos\Nipigas_TASKS_1-10\Task1_MassFind\obj\Debug\net6.0\Tasks.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\evtku\Source\Repos\Nipigas_TASKS_1-10\Task1_MassFind\obj\Debug\net6.0\Tasks.AssemblyInfoInputs.cache
+C:\Users\evtku\Source\Repos\Nipigas_TASKS_1-10\Task1_MassFind\obj\Debug\net6.0\Tasks.AssemblyInfo.cs
+C:\Users\evtku\Source\Repos\Nipigas_TASKS_1-10\Task1_MassFind\obj\Debug\net6.0\Tasks.csproj.CoreCompileInputs.cache
+C:\Users\evtku\Source\Repos\Nipigas_TASKS_1-10\Task1_MassFind\obj\Debug\net6.0\Tasks.dll
+C:\Users\evtku\Source\Repos\Nipigas_TASKS_1-10\Task1_MassFind\obj\Debug\net6.0\refint\Tasks.dll
+C:\Users\evtku\Source\Repos\Nipigas_TASKS_1-10\Task1_MassFind\obj\Debug\net6.0\Tasks.pdb
+C:\Users\evtku\Source\Repos\Nipigas_TASKS_1-10\Task1_MassFind\obj\Debug\net6.0\ref\Tasks.dll

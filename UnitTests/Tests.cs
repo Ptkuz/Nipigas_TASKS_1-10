@@ -217,35 +217,14 @@ namespace UnitTests
             Assert.AreEqual(result, Nipigas.UniqueInOrder(mass));
         }
 
-
-        // Учет регистра в коллекции строк я оставил намеренно, так как, по сути, элемент меняется от
-        // смены регистра. Это же не просто обычный char, а целое слово. Аббревиатуры могут иметь разный 
-        // регистр и, соответственно, смысл. Но убрать учет регистра можна аналагчино тому, как я это 
-        // сделал с char.
-        [Test]
-        public void Nipigas_UniqueInOrder_Test6()
-        {
-            List<string> list = new List<string> { "Павел", "Павел", "Андрей", "Андрей", "Игорь", "Андрей" };
-            List<string> result = new List<string>();
-            IEnumerable items = Nipigas.UniqueInOrder(list);
-            foreach (var item in items)
-                result.Add(item.ToString());
-
-            Assert.AreEqual(result[0], "Павел");
-            Assert.AreEqual(result[1], "Андрей");
-            Assert.AreEqual(result[2], "Игорь");
-            Assert.AreEqual(result[3], "Андрей");
-        }
-
-
         // Но вариацию без учета регистра я тоже сделал.
         // Просто нужно указать дополнительный необязательный параметр NoRegister = true
         [Test]
         public void Nipigas_UniqueInOrder_Test7()
         {
-            List<string> list = new List<string> { "Павел", "Павел", "Андрей", "Андрей", "Игорь", "Андрей" };
+            List<string> list = new List<string> { "Павел", "павел", "Андрей", "Андрей", "Игорь", "Андрей" };
             List<string> result = new List<string>();
-            IEnumerable items = Nipigas.UniqueInOrder(list, true);
+            IEnumerable items = Nipigas.UniqueInOrder(list);
             foreach (var item in items)
                 result.Add(item.ToString());
 

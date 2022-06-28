@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ptkuz\\source\\repos\\AlgoritmsTasks\\Task1_MassFind\\Tasks.csproj": {}
+    "C:\\Users\\evtku\\Source\\Repos\\Nipigas_TASKS_1-10\\Task1_MassFind\\Tasks.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ptkuz\\source\\repos\\AlgoritmsTasks\\Task1_MassFind\\Tasks.csproj": {
+    "C:\\Users\\evtku\\Source\\Repos\\Nipigas_TASKS_1-10\\Task1_MassFind\\Tasks.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ptkuz\\source\\repos\\AlgoritmsTasks\\Task1_MassFind\\Tasks.csproj",
+        "projectUniqueName": "C:\\Users\\evtku\\Source\\Repos\\Nipigas_TASKS_1-10\\Task1_MassFind\\Tasks.csproj",
         "projectName": "Tasks",
-        "projectPath": "C:\\Users\\ptkuz\\source\\repos\\AlgoritmsTasks\\Task1_MassFind\\Tasks.csproj",
-        "packagesPath": "C:\\Users\\ptkuz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ptkuz\\source\\repos\\AlgoritmsTasks\\Task1_MassFind\\obj\\",
+        "projectPath": "C:\\Users\\evtku\\Source\\Repos\\Nipigas_TASKS_1-10\\Task1_MassFind\\Tasks.csproj",
+        "packagesPath": "C:\\Users\\evtku\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\evtku\\Source\\Repos\\Nipigas_TASKS_1-10\\Task1_MassFind\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ptkuz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\evtku\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -58,7 +58,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }

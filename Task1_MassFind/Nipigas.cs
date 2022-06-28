@@ -140,42 +140,36 @@ namespace Tasks
 
         #region Задание 6: Убрать дублирование символов UniqueInOrder
 
-        public static IEnumerable UniqueInOrder<T>(IEnumerable<T> iterable, bool noRegister = false)
+        public static IEnumerable UniqueInOrder<T>(IEnumerable<T> iterable)
         {
-            char prevChar = default!; // Если Char
-            string prevStr = ""; // Если String
             var prevT = default(T); // Если любой другой тип
-            //char c = default!;
-            List<char> chars = new List<char>(); // Список отсортированных Char
-            List<string> strings = new List<string>(); // Список отсортированных String
-            var items = iterable.ToArray(); // Удаляем дублирующие элементы
-            if (items.GetType() == typeof(char[])) // Если получается массив char
+            char prevC = default!;
+            string prevS = "";
+
+            var stringOrChars = iterable.
+                Where(x => x.GetType() == typeof(char) || x.GetType() == typeof(string)).
+                ToArray();
+
+            if (stringOrChars.Count()>0)
             {
-                foreach (var item in items) // обходим массив
+                foreach (var item in stringOrChars)
                 {
-                    char c = Char.ToUpper(Convert.ToChar(item)); // Сконвертируем элемент в char и поднимем регистр
-                    if (prevChar.Equals(c))
-                        continue;
-                    chars.Add(c);
-                    prevChar = c;
+                    if (stringOrChars.GetType() == typeof(char[]))
+                    {
+                        if (Char.ToUpper(Convert.ToChar(item)).Equals(Char.ToUpper(prevC)))
+                            continue;
+                        prevC = Char.ToUpper(Convert.ToChar(item));
+                        yield return prevC;
+                    }
+                    if (stringOrChars.GetType() == typeof(string[])) 
+                    {
+                        if (item.ToString().ToUpper().Equals(prevS.ToUpper()))
+                            continue;
+                        prevS = item.ToString().ToUpper();
+                        yield return prevS;
+                    }
                 }
-                char[] resultChars = chars.ToArray();
-                foreach (var item in resultChars)
-                    yield return item;
-            }
-            else if (items.GetType() == typeof(string[]) && noRegister == true)
-            {
-                foreach (var item in items) // обходим массив
-                {
-                    string str = item.ToString().ToUpper(); // Сконвертируем элемент в string и поднимем регистр
-                    if (prevStr.Equals(str))
-                        continue;
-                    strings.Add(str);
-                    prevStr = str;
-                }
-                string[] resultStrings = strings.ToArray();
-                foreach (var item in resultStrings)
-                    yield return item;
+
             }
             else
             {
@@ -188,8 +182,8 @@ namespace Tasks
 
                     yield return item;
                 }
-            }
 
+            }
         }
 
 
